@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Marvel Rivals team planner and schedule builder."
+    >
+
+    <title>Rivals Team Planner</title>
+
+    <link rel="stylesheet"
+      href="{{ url_for('static', filename='team-planner.css') }}">
+</head>
+
+<body>
+
+    <header class="app-header">
+
+        <div class="header-brand">
+
+            <div class="brand-icon">
+                R
+            </div>
+
+            <div class="brand-text">
+                <h1>RIVALS // AVANT NOVA</h1>
+                <span>Team Planner & Schedule</span>
+            </div>
+
+        </div>
+
+
+        <div class="header-status">
+
+            <span class="status-dot"></span>
+
+            <span>
+                TEAM ONLINE
+            </span>
+
+        </div>
+
+    </header>
+
+    <main class="planner-container">
+
+        <section class="panel team-overview">
+
+            <div class="panel-heading">
+
+                <div>
+                    <span class="section-number">01</span>
+
+                    <h2>
+                        Team Overview
+                    </h2>
+
+                    <p>
+                        Set up your roster before building
+                        your schedule.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="team-details">
+
+                <div class="field">
+
+                    <label for="teamName">
+                        Team Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="teamName"
+                        placeholder="Enter team name..."
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="teamTag">
+                        Team Tag
+                    </label>
+
+                    <input
+                        type="text"
+                        id="teamTag"
+                        maxlength="6"
+                        placeholder="TAG"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="season">
+                        Season
+                    </label>
+
+                    <select id="season">
+
+                        <option>
+                            Season 1
+                        </option>
+
+                        <option>
+                            Season 2
+                        </option>
+
+                        <option>
+                            Season 3
+                        </option>
+
+                        <option>
+                            Custom
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!--  PLAYER ROSTER-->
+
+        <section class="panel roster-panel">
+
+            <div class="panel-heading roster-heading">
+
+                <div>
+
+                    <span class="section-number">
+                        02
+                    </span>
+
+                    <h2>
+                        Player Roster
+                    </h2>
+
+                    <p>
+                        Track players, roles, strengths,
+                        weaknesses and notes.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    id="addPlayerButton"
+                    type="button"
+                >
+                    + Add Player
+                </button>
+
+            </div>
+
+            <div
+                class="player-grid"
+                id="playerGrid"
+            >
+                <article class="player-card">
+
+                    <div class="player-card-header">
+
+                        <div class="player-avatar">
+                            P1
+                        </div>
+
+                        <div class="player-identity">
+
+                            <input
+                                type="text"
+                                class="player-name"
+                                placeholder="Player name"
+                                value="Player One"
+                            >
+
+                            <span class="player-status">
+                                ACTIVE
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="icon-button remove-player"
+                            type="button"
+                            aria-label="Remove player"
+                        >
+                            ×
+                        </button>
+
+                    </div>
+
+
+                    <!-- Main character -->
+
+                    <div class="player-field">
+
+                        <label>
+                            Main / Hero
+                        </label>
+
+                        <input
+                            type="text"
+                            placeholder="Spider-Man, Luna Snow..."
+                        >
+
+                    </div>
+
+
+                    <!-- Role selector -->
+
+                    <div class="player-field">
+
+                        <label>
+                            Roles
+                        </label>
+
+                        <button
+                            class="role-selector"
+                            type="button"
+                        >
+
+                            <span class="selected-roles">
+                                Select roles
+                            </span>
+
+                            <span class="selector-arrow">
+                                ▾
+                            </span>
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- Strength -->
+
+                    <div class="player-field">
+
+                        <label>
+                            Strengths
+                        </label>
+
+                        <input
+                            type="text"
+                            placeholder="Good aim, shot calling..."
+                        >
+
+                    </div>
+
+
+                    <!-- Weakness -->
+
+                    <div class="player-field">
+
+                        <label>
+                            Weaknesses
+                        </label>
+
+                        <textarea
+                            rows="2"
+                            placeholder="What should the team work on?"
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- Notes -->
+
+                    <div class="player-field">
+
+                        <label>
+                            Coach / Team Notes
+                        </label>
+
+                        <textarea
+                            rows="3"
+                            placeholder="Additional notes..."
+                        ></textarea>
+
+                    </div>
+
+                </article>
+
+
+                <article class="player-card">
+
+                    <div class="player-card-header">
+
+                        <div class="player-avatar">
+                            P2
+                        </div>
+
+                        <div class="player-identity">
+
+                            <input
+                                type="text"
+                                class="player-name"
+                                placeholder="Player name"
+                                value="Player Two"
+                            >
+
+                            <span class="player-status">
+                                ACTIVE
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="icon-button remove-player"
+                            type="button"
+                            aria-label="Remove player"
+                        >
+                            ×
+                        </button>
+
+                    </div>
+
+
+                    <div class="player-field">
+
+                        <label>
+                            Main / Hero
+                        </label>
+
+                        <input
+                            type="text"
+                            placeholder="Main character..."
+                        >
+
+                    </div>
+
+
+                    <div class="player-field">
+
+                        <label>
+                            Roles
+                        </label>
+
+                        <button
+                            class="role-selector"
+                            type="button"
+                        >
+
+                            <span class="selected-roles">
+                                Select roles
+                            </span>
+
+                            <span class="selector-arrow">
+                                ▾
+                            </span>
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="player-field">
+
+                        <label>
+                            Strengths
+                        </label>
+
+                        <input
+                            type="text"
+                            placeholder="Player strengths..."
+                        >
+
+                    </div>
+
+
+                    <div class="player-field">
+
+                        <label>
+                            Weaknesses
+                        </label>
+
+                        <textarea
+                            rows="2"
+                            placeholder="Player weaknesses..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="player-field">
+
+                        <label>
+                            Coach / Team Notes
+                        </label>
+
+                        <textarea
+                            rows="3"
+                            placeholder="Additional notes..."
+                        ></textarea>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ROLE SELECTION POPUP->
+         <--REMINDER TO WORK ON THIS MOR-->
+
+        <div
+            class="role-modal"
+            id="roleModal"
+            aria-hidden="true"
+        >
+
+            <div class="modal-backdrop"></div>
+
+            <div
+                class="role-modal-content"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="roleModalTitle"
+            >
+
+                <div class="modal-header">
+
+                    <div>
+
+                        <span class="modal-kicker">
+                            PLAYER SPECIALIZATION
+                        </span>
+
+                        <h2 id="roleModalTitle">
+                            Select Roles
+                        </h2>
+
+                    </div>
+
+                    <button
+                        class="modal-close"
+                        type="button"
+                        aria-label="Close role selector"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+                <p class="modal-description">
+                    Select every role this player is
+                    comfortable playing.
+                </p>
+
+
+                <div class="role-options">
+
+
+                    <!-- Vanguard -->
+
+                    <button
+                        class="role-option role-vanguard"
+                        type="button"
+                        data-role="Vanguard"
+                    >
+
+                        <span class="role-icon">
+                            V
+                        </span>
+
+                        <span class="role-info">
+
+                            <strong>
+                                Vanguard
+                            </strong>
+
+                            <small>
+                                Frontline / Space Control
+                            </small>
+
+                        </span>
+
+                        <span class="role-check">
+                            ✓
+                        </span>
+
+                    </button>
+
+
+                    <!-- Duelist -->
+
+                    <button
+                        class="role-option role-duelist"
+                        type="button"
+                        data-role="Duelist"
+                    >
+
+                        <span class="role-icon">
+                            D
+                        </span>
+
+                        <span class="role-info">
+
+                            <strong>
+                                Duelist
+                            </strong>
+
+                            <small>
+                                Damage / Elimination
+                            </small>
+
+                        </span>
+
+                        <span class="role-check">
+                            ✓
+                        </span>
+
+                    </button>
+
+
+                    <!-- Strategist -->
+
+                    <button
+                        class="role-option role-strategist"
+                        type="button"
+                        data-role="Strategist"
+                    >
+
+                        <span class="role-icon">
+                            S
+                        </span>
+
+                        <span class="role-info">
+
+                            <strong>
+                                Strategist
+                            </strong>
+
+                            <small>
+                                Support / Utility
+                            </small>
+
+                        </span>
+
+                        <span class="role-check">
+                            ✓
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+                <button
+                    class="confirm-role-button"
+                    type="button"
+                >
+                    Confirm Roles
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!--   TEAM COMPO-->
+
+        <section class="panel composition-panel">
+
+            <div class="panel-heading">
+
+                <div>
+
+                    <span class="section-number">
+                        03
+                    </span>
+
+                    <h2>
+                        Team Composition
+                    </h2>
+
+                    <p>
+                        Build a lineup for your next match.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="composition-layout">
+
+
+                <!-- Starting lineup -->
+
+                <div class="lineup-container">
+
+                    <div class="subheading">
+
+                        <h3>
+                            Starting Lineup
+                        </h3>
+
+                        <span>
+                            0 / 6
+                        </span>
+
+                    </div>
+
+
+                    <div class="lineup-slots">
+
+
+                        <div
+                            class="lineup-slot"
+                            data-slot="1"
+                        >
+
+                            <span class="slot-number">
+                                01
+                            </span>
+
+                            <span class="slot-player">
+                                Empty
+                            </span>
+
+                            <span class="slot-role">
+                                —
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="lineup-slot"
+                            data-slot="2"
+                        >
+
+                            <span class="slot-number">
+                                02
+                            </span>
+
+                            <span class="slot-player">
+                                Empty
+                            </span>
+
+                            <span class="slot-role">
+                                —
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="lineup-slot"
+                            data-slot="3"
+                        >
+
+                            <span class="slot-number">
+                                03
+                            </span>
+
+                            <span class="slot-player">
+                                Empty
+                            </span>
+
+                            <span class="slot-role">
+                                —
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="lineup-slot"
+                            data-slot="4"
+                        >
+
+                            <span class="slot-number">
+                                04
+                            </span>
+
+                            <span class="slot-player">
+                                Empty
+                            </span>
+
+                            <span class="slot-role">
+                                —
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="lineup-slot"
+                            data-slot="5"
+                        >
+
+                            <span class="slot-number">
+                                05
+                            </span>
+
+                            <span class="slot-player">
+                                Empty
+                            </span>
+
+                            <span class="slot-role">
+                                —
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="lineup-slot"
+                            data-slot="6"
+                        >
+
+                            <span class="slot-number">
+                                06
+                            </span>
+
+                            <span class="slot-player">
+                                Empty
+                            </span>
+
+                            <span class="slot-role">
+                                —
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Composition notes -->
+
+                <div class="composition-notes">
+
+                    <div class="subheading">
+
+                        <h3>
+                            Match Notes
+                        </h3>
+
+                    </div>
+
+                    <textarea
+                        placeholder="Win conditions, enemy matchup notes, team strategy..."
+                    ></textarea>
+
+
+                    <div class="composition-tags">
+
+                        <span class="composition-tag">
+                            Vanguard
+                            <strong>0</strong>
+                        </span>
+
+                        <span class="composition-tag">
+                            Duelist
+                            <strong>0</strong>
+                        </span>
+
+                        <span class="composition-tag">
+                            Strategist
+                            <strong>0</strong>
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!--SCHEDULE BUI  -->
+
+        <section class="panel schedule-panel">
+
+            <div class="panel-heading">
+
+                <div>
+
+                    <span class="section-number">
+                        04
+                    </span>
+
+                    <h2>
+                        Team Schedule
+                    </h2>
+
+                    <p>
+                        Plan practices, scrims and match days.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="secondary-button"
+                    type="button"
+                    id="addScheduleButton"
+                >
+                    + Add Event
+                </button>
+
+            </div>
+
+
+            <div
+                class="schedule-list"
+                id="scheduleList"
+            >
+
+                <article class="schedule-item">
+
+                    <div class="schedule-date">
+
+                        <strong>
+                            MON
+                        </strong>
+
+                        <span>
+                            AUG 24
+                        </span>
+
+                    </div>
+
+
+                    <div class="schedule-info">
+
+                        <h3>
+                            Team Practice
+                        </h3>
+
+                        <p>
+                            Mechanics + team coordination
+                        </p>
+
+                    </div>
+
+
+                    <div class="schedule-time">
+
+                        <strong>
+                            7:00 PM
+                        </strong>
+
+                        <span>
+                            2 Hours
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="icon-button"
+                        type="button"
+                        aria-label="Edit schedule event"
+                    >
+                        ✎
+                    </button>
+
+                </article>
+
+                <article class="schedule-item">
+
+                    <div class="schedule-date">
+
+                        <strong>
+                            WED
+                        </strong>
+
+                        <span>
+                            AUG 26
+                        </span>
+
+                    </div>
+
+
+                    <div class="schedule-info">
+
+                        <h3>
+                            Scrim
+                        </h3>
+
+                        <p>
+                            Competitive practice match
+                        </p>
+
+                    </div>
+
+
+                    <div class="schedule-time">
+
+                        <strong>
+                            8:00 PM
+                        </strong>
+
+                        <span>
+                            3 Games
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="icon-button"
+                        type="button"
+                        aria-label="Edit schedule event"
+                    >
+                        ✎
+                    </button>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <section class="action-bar">
+
+            <div class="save-status">
+                <span class="save-indicator"></span>
+
+                <span>
+                    Changes saved locally
+                </span>
+            </div>
+
+
+            <div class="action-buttons">
+
+                <button
+                    class="secondary-button"
+                    type="button"
+                >
+                    Reset
+                </button>
+
+                <button
+                    class="primary-button"
+                    type="button"
+                >
+                    Save Team Plan
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <div
+        class="schedule-modal"
+        id="scheduleModal"
+        aria-hidden="true"
+    >
+
+        <div class="modal-backdrop"></div>
+
+        <div class="schedule-modal-content">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="modal-kicker">
+                        TEAM CALENDAR
+                    </span>
+
+                    <h2>
+                        Add Schedule Event
+                    </h2>
+
+                </div>
+
+                <button
+                    class="modal-close"
+                    type="button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="modal-form">
+
+                <div class="field">
+
+                    <label for="eventName">
+                        Event Name
+                    </label>
+
+                    <input
+                        id="eventName"
+                        type="text"
+                        placeholder="Team Practice"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="eventType">
+                        Event Type
+                    </label>
+
+                    <select id="eventType">
+
+                        <option>
+                            Practice
+                        </option>
+
+                        <option>
+                            Scrim
+                        </option>
+
+                        <option>
+                            Tournament
+                        </option>
+
+                        <option>
+                            Match
+                        </option>
+
+                        <option>
+                            Review
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="field">
+
+                        <label for="eventDate">
+                            Date
+                        </label>
+
+                        <input
+                            id="eventDate"
+                            type="date"
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="eventTime">
+                            Time
+                        </label>
+
+                        <input
+                            id="eventTime"
+                            type="time"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="eventNotes">
+                        Notes
+                    </label>
+
+                    <textarea
+                        id="eventNotes"
+                        rows="4"
+                        placeholder="What are you practicing?"
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    class="confirm-role-button"
+                    type="button"
+                >
+                    Add To Schedule
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <footer class="app-footer">
+
+        <span>
+            RIVALS // TEAM OPS
+        </span>
+
+        <span>
+            Team planning interface
+        </span>
+
+    </footer>
+
+    <script src="team-planner.js"></script>
+
+</body>
+</html>

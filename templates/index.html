@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Marvel Rivals - Create Profile</title>
+
+    <link rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <main class="profile-container">
+
+        <section class="profile-header">
+            <h1>Create Your Hero Profile</h1>
+
+            <p>
+                Tell your team who you are, what roles you play,
+                and which heroes you perform best with.
+            </p>
+        </section>
+
+
+        <form id="profileForm"
+        method="POST"
+        action="{{ url_for('index') }}">
+
+            <!-- USERNAME -->
+
+            <section class="form-section">
+
+                <h2>Player Information</h2>
+                <br>
+
+            <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter your rivals username"
+            maxlength="30"
+            value="{{ profile['username'] if profile else '' }}"
+            required
+            >
+
+            </section>
+
+
+            <!-- PREFERRED ROLES -->
+
+            <section class="form-section">
+
+                <h2>Preferred Roles</h2>
+
+                <p class="section-description">
+                    Select the roles you are comfortable playing.
+                </p>
+
+                <div class="role-container">
+
+                    <label class="role-card">
+                        <input
+                            type="checkbox"
+                            name="roles"
+                            value="Vanguard"
+                        {% if profile and 'Vanguard' in profile['roles'].split(',') %}
+                            checked
+                        {% endif %}                        
+                        >
+
+                        <span>🛡️</span>
+                        <strong>Vanguard</strong>
+                    </label>
+
+
+                    <label class="role-card">
+                        <input
+                            type="checkbox"
+                            name="roles"
+                            value="Duelist"
+                        {% if profile and 'Duelist' in profile['roles'].split(',') %}
+                            checked
+                        {% endif %}
+                        >
+
+                        <span>⚔️</span>
+                        <strong>Duelist</strong>
+                    </label>
+
+
+                    <label class="role-card">
+                        <input
+                            type="checkbox"
+                            name="roles"
+                            value="Strategist"
+                        {% if profile and 'Strategist' in profile['roles'].split(',') %}
+                            checked
+                        {% endif %}
+                        >
+
+                        <span>💚</span>
+                        <strong>Strategist</strong>
+                    </label>
+
+                </div>
+
+            </section>
+
+        <section class="form-section">
+
+        <h2>Your Top 4 Heroes</h2>
+
+        <p class="section-description">
+        Select the four heroes you perform best with.
+        </p>
+
+        <div class="hero-grid">
+
+        {% for hero in heroes_list %}
+
+        <label class="hero-card">
+
+            <input
+                type="checkbox"
+                name="heroes"
+                value="{{ hero }}"
+                {% if profile and hero in profile['heroes'].split(',') %}
+                    checked
+                {% endif %}
+            >
+
+            <img
+                src="{{ url_for('static', filename='heroicons/' + hero|lower|replace(' ', '')|replace('-', '') + 'icon.png') }}"
+                alt="{{ hero }}"
+            >
+
+            <div class="hero-name">
+                {{ hero }}
+            </div>
+
+        </label>
+
+        {% endfor %}
+
+        </div>
+
+        </section>
+
+
+            <!-- DESCRIPTION -->
+
+            <section class="form-section">
+
+                <h2>About Your Playstyle</h2>
+
+                <p class="section-description">
+                    Tell your team anything they should know about your playstyle.
+                </p>
+
+                <textarea
+                    id="description"
+                    name="description"
+                    maxlength="500"
+                    placeholder="Example: I usually play aggressive Duelists but can flex to Strategist when needed..."
+                >{{ profile['description'] if profile else '' }} </textarea>
+
+            </section>
+
+            <button
+                type="submit"
+                class="create-profile-button"
+            >
+                Create Profile
+            </button>
+
+        </form>
+
+    </main>
+
+    <script>
+    const heroCheckboxes = document.querySelectorAll(
+        'input[name="heroes"]'
+    );
+
+    heroCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener("change", () => {
+            const selected = document.querySelectorAll(
+                'input[name="heroes"]:checked'
+            );
+
+            if (selected.length > 4) {
+                checkbox.checked = false;
+                alert("You can select up to four heroes!");
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

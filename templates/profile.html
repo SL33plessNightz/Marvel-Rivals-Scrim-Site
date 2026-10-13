@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ profile['username'] }} - Hero Profile</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <main class="profile-container">
+
+        <section class="profile-header">
+            <h1>{{ profile['username'] }}'s Hero Profile</h1>
+            <p>Your Marvel Rivals profile has been saved!</p>
+        </section>
+
+        <section class="form-section">
+            <h2>Preferred Roles</h2>
+
+            {% if roles %}
+                <p>{{ roles | join(' • ') }}</p>
+            {% else %}
+                <p>No roles selected.</p>
+            {% endif %}
+        </section>
+
+        <section class="form-section">
+            <h2>Your Top Heroes</h2>
+
+            {% if heroes %}
+                <div class="hero-grid">
+                    {% for hero in heroes %}
+                        <div class="hero-card">
+                            {% if hero == 'Spider-Man' %}
+                                <img src="{{ url_for('static', filename='heroicons/spidermanicon.png') }}" alt="Spider-Man">
+                            {% elif hero == 'Magik' %}
+                                <img src="{{ url_for('static', filename='heroicons/magikicon.png') }}" alt="Magik">
+                            {% elif hero == 'Star-Lord' %}
+                                <img src="{{ url_for('static', filename='heroicons/starlordicon.png') }}" alt="Star-Lord">
+                            {% elif hero == 'Mantis' %}
+                                <img src="{{ url_for('static', filename='heroicons/mantisicon.png') }}" alt="Mantis">
+                            {% endif %}
+
+                            <div class="hero-name">{{ hero }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No heroes selected.</p>
+            {% endif %}
+        </section>
+
+        <section class="form-section">
+            <h2>About My Playstyle</h2>
+            <p>{{ profile['description'] or 'No description provided.' }}</p>
+        </section>
+
+        <div class="profile-buttons">
+
+        <a href="{{ url_for('edit_profile') }}"
+       class="create-profile-button">
+        Edit Profile
+        </a>
+
+        <a href="{{ url_for('team_planner') }}"
+       class="create-profile-button">
+        Go to Team Roster
+        </a>
+
+        </div>
+
+    </main>
+</body>
+</html>
