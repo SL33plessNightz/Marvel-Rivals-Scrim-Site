@@ -139,8 +139,27 @@ def edit_profile():
 
 @app.route("/team-planner")
 def team_planner():
-    return render_template("team-planner.html")
+    with get_db() as db:
+        profiles = db.execute(
+            "SELECT id, username, roles, heroes, description "
+            "FROM profiles ORDER BY username COLLATE NOCASE"
+        ).fetchall()
 
+    available_profiles = [
+        {
+            "id": profile["id"],
+            "username": profile["username"],
+            "roles": profile["roles"].split(",") if profile["roles"] else [],
+            "heroes": profile["heroes"].split(",") if profile["heroes"] else [],
+            "description": profile["description"]
+        }
+        for profile in profiles
+    ]
+
+    return render_template(
+        "team-planner.html",
+        available_profiles=available_profiles
+    )
 
 
 HEROES = [
