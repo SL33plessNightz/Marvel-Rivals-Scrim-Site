@@ -1515,3 +1515,81 @@ select:focus-visible {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* Schedule event action buttons */
+.schedule-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.delete-event {
+    color: #ff6b75;
+    font-size: 1.4rem;
+}
+
+.schedule-empty {
+    padding: 24px;
+    text-align: center;
+    opacity: 0.7;
+}
+
+.event-notes {
+    margin-top: 6px;
+    overflow-wrap: anywhere;
+}
+
+/* Team availability */
+.availability-panel .field {
+    margin-bottom: 24px;
+}
+
+#myAvailability {
+    width: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+    margin-bottom: 12px;
+}
+
+.availability-list {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(220px, 1fr)
+    );
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.availability-card {
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    overflow-wrap: anywhere;
+}
+
+.availability-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.availability-card p {
+    white-space: pre-wrap;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Keep the schedule modal above the page */
+.schedule-modal.active {
+    display: flex;
+}
+
+.schedule-modal[aria-hidden="true"] {
+    display: none;
+}
+
+.schedule-modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+}

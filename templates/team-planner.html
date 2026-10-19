@@ -284,15 +284,20 @@
                     </div>
 
 
-                    <!-- Notes -->
+                   <!-- Notes -->
 
-                  <div
-    class="player-grid"
-    id="playerGrid"
->
-</div>
+        <div class="player-field">
+            <label>Notes</label>
+            <textarea
+                rows="2"
+                placeholder="Additional player notes..."
+            ></textarea>
+        </div>
 
-</section>
+        </article>
+        </div>
+
+        </section>
 
         </section>
 
@@ -368,10 +373,7 @@
             {% endfor %}
         </div>
     </div>
-</div>
-
-        <!-- ROLE SELECTION POPUP->
-         <--REMINDER TO WORK ON THIS MOR-->
+    </div>
 
         <div
             class="role-modal"
@@ -697,8 +699,6 @@
 
     </section>
 
-        <!--SCHEDULE BUI  -->
-
         <section class="panel schedule-panel">
 
             <div class="panel-heading">
@@ -719,6 +719,29 @@
 
                 </div>
 
+                <section class="panel availability-panel">
+    <div class="panel-heading">
+        <div>
+            <span class="section-number">05</span>
+            <h2>Team Availability</h2>
+            <p>Let the team know when you can attend practices and scrims.</p>
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="myAvailability">Your Availability</label>
+        <textarea id="myAvailability" rows="3"
+            maxlength="2000"
+            placeholder="Example: Available weekdays after 7 PM CDT. Free most Saturdays."></textarea>
+        <button class="primary-button" id="saveAvailability" type="button">
+            Save Availability
+        </button>
+    </div>
+
+    <div id="availabilityList" class="availability-list">
+        <p>Loading player availability...</p>
+    </div>
+</section>
 
                 <button
                     class="secondary-button"
@@ -731,59 +754,9 @@
             </div>
 
 
-            <div
-                class="schedule-list"
-                id="scheduleList"
-            >
-
-                <article class="schedule-item">
-
-                    <div class="schedule-date">
-
-                        <strong>
-                            MON
-                        </strong>
-
-                        <span>
-                            AUG 24
-                        </span>
-
-                    </div>
-
-
-                    <div class="schedule-info">
-
-                        <h3>
-                            Team Practice
-                        </h3>
-
-                        <p>
-                            Mechanics + team coordination
-                        </p>
-
-                    </div>
-
-
-                    <div class="schedule-time">
-
-                        <strong>
-                            7:00 PM
-                        </strong>
-
-                        <span>
-                            2 Hours
-                        </span>
-
-                    </div>
-
-
-                    <button
-                        class="icon-button"
-                        type="button"
-                        aria-label="Edit schedule event"
-                    >
-                        ✎
-                    </button>
+           <div class="schedule-list" id="scheduleList">
+    <p class="schedule-empty">Loading team schedule...</p>
+        </div>
 
                 </article>
 
@@ -895,14 +868,12 @@
                         TEAM CALENDAR
                     </span>
 
-                    <h2>
-                        Add Schedule Event
-                    </h2>
-
+                    <h2 id="scheduleModalTitle"> Add Schedule Event</h2>
                 </div>
 
                 <button
                     class="modal-close"
+                     id="closeScheduleModal"
                     type="button"
                 >
                     ×
@@ -992,6 +963,36 @@
 
                 </div>
 
+                <div class="field">
+    <label for="eventTimezone">Time Zone</label>
+    <select id="eventTimezone" required>
+        <option value="America/Chicago">Central Time (CT)</option>
+        <option value="America/Los_Angeles">Pacific Time (PT)</option>
+        <option value="America/New_York">Eastern Time (ET)</option>
+        <option value="America/Denver">Mountain Time (MT)</option>
+        <option value="America/Phoenix">Arizona Time</option>
+        <option value="UTC">UTC</option>
+    </select>
+        </div>
+
+        <div class="form-row">
+            <div class="field">
+                <label for="eventDurationHours">Duration (hours)</label>
+                <input id="eventDurationHours"
+                    type="number" min="0" max="24" value="2" required>
+            </div>
+
+            <div class="field">
+                <label for="eventDurationMinutes">Extra minutes</label>
+                <select id="eventDurationMinutes">
+                    <option value="0">0 minutes</option>
+                    <option value="15">15 minutes</option>
+                    <option value="30">30 minutes</option>
+                    <option value="45">45 minutes</option>
+                </select>
+            </div>
+        </div>
+
 
                 <div class="field">
 
@@ -1010,6 +1011,7 @@
 
                 <button
                     class="confirm-role-button"
+                    id="saveScheduleEvent"
                     type="button"
                 >
                     Add To Schedule

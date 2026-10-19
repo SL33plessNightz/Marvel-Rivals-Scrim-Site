@@ -307,3 +307,11 @@ textarea:focus {
     text-align: center;
     width: 20cm;
 }
+
+.schedule-modal {
+    display: none;
+}
+
+.schedule-modal.active {
+    display: flex;
+}
